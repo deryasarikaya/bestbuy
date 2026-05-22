@@ -48,7 +48,7 @@ class Product:
 
     # Print product information
     def show(self):
-        print(f"{self.name}, Price: ${self.price}, Quantity: {self.quantity}")
+        return f"{self.name}, Price: ${self.price}, Quantity: {self.quantity}"
 
     # Buy a certain amount of the product
     def buy(self, quantity: int) -> float:
