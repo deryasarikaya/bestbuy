@@ -50,10 +50,14 @@ def make_order(best_buy):
         print("Product added to list!")
         print()
 
-    total_price = best_buy.order(shopping_list)
+    try:
+        total_price = best_buy.order(shopping_list)
 
-    print("********")
-    print(f"Order made! Total payment: ${total_price}")
+        print("********")
+        print(f"Order made! Total payment: ${total_price}")
+
+    except ValueError as error:
+        print(f"Order failed: {error}")
 
 
 def start(best_buy):
