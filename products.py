@@ -1,6 +1,6 @@
 class Product:
 
-    def __init__(self, name, price, quantity):
+    def __init__(self, name: str, price: float, quantity: int):
 
         # Validate input values
         if name == "":
@@ -19,11 +19,11 @@ class Product:
         self.active = True
 
     # Return current quantity
-    def get_quantity(self):
+    def get_quantity(self) -> int:
         return self.quantity
 
     # Update product quantity
-    def set_quantity(self, quantity):
+    def set_quantity(self, quantity: int):
 
         if quantity < 0:
             raise ValueError("Quantity cannot be negative")
@@ -35,7 +35,7 @@ class Product:
             self.deactivate()
 
     # Return active status
-    def is_active(self):
+    def is_active(self) -> bool:
         return self.active
 
     # Activate product
@@ -51,7 +51,7 @@ class Product:
         print(f"{self.name}, Price: ${self.price}, Quantity: {self.quantity}")
 
     # Buy a certain amount of the product
-    def buy(self, quantity):
+    def buy(self, quantity: int) -> float:
 
         if quantity <= 0:
             raise ValueError("Quantity must be greater than 0")
@@ -62,6 +62,7 @@ class Product:
                 f"Not enough quantity in stock. Available: {self.quantity}"
             )
 
+        # Calculate total purchase price
         total_price = self.price * quantity
 
         # Reduce stock quantity
