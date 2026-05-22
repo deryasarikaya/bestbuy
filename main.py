@@ -3,6 +3,7 @@ import store
 
 
 def show_menu():
+    """Display the store menu."""
     print()
     print("   Store Menu")
     print("   ----------")
@@ -13,6 +14,7 @@ def show_menu():
 
 
 def list_products(best_buy):
+    """Display all active products in the store."""
     print("------")
 
     product_list = best_buy.get_all_products()
@@ -24,6 +26,7 @@ def list_products(best_buy):
 
 
 def make_order(best_buy):
+    """Create an order from user input."""
     shopping_list = []
     product_list = best_buy.get_all_products()
 
@@ -54,6 +57,7 @@ def make_order(best_buy):
 
 
 def start(best_buy):
+    """Run the store menu."""
     while True:
         show_menu()
 
