@@ -41,18 +41,33 @@ def make_order(best_buy):
         if product_number == "" or amount == "":
             break
 
-        product_number = int(product_number)
-        amount = int(amount)
+        try:
+            product_number = int(product_number)
+            amount = int(amount)
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if product_number < 1 or product_number > len(product_list):
+            print(f"Invalid product number. Please choose between 1 and {len(product_list)}.")
+            continue
 
         product = product_list[product_number - 1]
-        shopping_list.append((product, amount))
 
+        if amount > product.get_quantity():
+            print(f"Not enough stock. Available: {product.get_quantity()}")
+            continue
+
+        shopping_list.append((product, amount))
         print("Product added to list!")
         print()
 
+    if not shopping_list:
+        print("No products ordered.")
+        return
+
     try:
         total_price = best_buy.order(shopping_list)
-
         print("********")
         print(f"Order made! Total payment: ${total_price}")
 
@@ -61,7 +76,7 @@ def make_order(best_buy):
 
 
 def start(best_buy):
-    """Run the store menu."""
+    """Run the store menu loop."""
     while True:
         show_menu()
 
@@ -83,8 +98,8 @@ def start(best_buy):
             print("Invalid choice. Please choose a number between 1 and 4.")
 
 
-if __name__ == "__main__":
-    # Setup initial stock of inventory
+def main():
+    """Set up the store and start the menu."""
     product_list = [
         products.Product("MacBook Air M2", price=1450, quantity=100),
         products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
@@ -92,5 +107,8 @@ if __name__ == "__main__":
     ]
 
     best_buy = store.Store(product_list)
-
     start(best_buy)
+
+
+if __name__ == "__main__":
+    main()
